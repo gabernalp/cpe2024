@@ -112,16 +112,16 @@ class UsersController extends Controller
             });
 
             $table->editColumn('profile_pic', function ($row) {
-                if ($photo = $row->profile_pic) {
-                    return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
-                }
+				if (!$row->profile_pic) {
+					return '';
+				}
 
-                return '';
-            });
+				$mediaId = $row->profile_pic->id;
+
+				$url = route('files.show', ['mediaId' => $mediaId]);
+				
+				return '<a href="' . $url . '" target="_blank"><img src="'.$url.'" width="50px" height="50px"></a>';
+			});
 
             $table->rawColumns(['actions', 'placeholder', 'documenttype', 'department', 'city', 'devices', 'roles', 'profile', 'profile_pic']);
 

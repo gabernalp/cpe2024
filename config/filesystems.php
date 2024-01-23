@@ -46,6 +46,7 @@ return [
 		'local' => [
 			'driver' => 'local',
 			'root' => storage_path('app'),
+			'temp' => storage_path('temp'),
 		],
 
 		'public' => [
@@ -53,8 +54,8 @@ return [
             'host' => env('FTP_HOST'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-            'root' => ('/home/wwserv/cpe/storage/app/public'),
-            'port' => 22022,
+            'root' => ('/ftp/cpe/storage/app/public'),
+            'port' => 22,
 			'url' => env('FTP_ROOT').'',
 			'visibility' => 'public',
 		],
@@ -69,12 +70,12 @@ return [
 		],
 
 		'respuestas' => [
-            'driver' => 'ftp',
+            'driver' => 'sftp',
             'host' => env('FTP_HOST'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-            'root' => ('/cpe/storage/app/public/respuestas'),
-            'port' => 2123,
+            'root' => ('/ftp/cpe/storage/app/public/respuestas'),
+            'port' => 22,
 			'url' => env('FTP_ROOT').'',
 			'visibility' => 'public',
 		],
@@ -97,7 +98,7 @@ return [
             'host' => env('FTP_HOST'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-            'port' => 22022,
+            'port' => 22,
             // Optional FTP Settings...
             // 'port' => env('FTP_PORT', 21),
             // 'root' => env('FTP_ROOT'),
@@ -107,7 +108,6 @@ return [
         ],
 
 	],
-	
 	
 
     /*

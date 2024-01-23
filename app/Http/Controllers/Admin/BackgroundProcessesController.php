@@ -61,7 +61,12 @@ class BackgroundProcessesController extends Controller
                 }
                 $links = [];
                 foreach ($row->file as $media) {
-                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>';
+					
+					$mediaId = $media->id;
+					
+					$url = route('files.show', ['mediaId' => $mediaId]);
+					
+                    $links[] = '<a href="' . $url . '" target="_blank">' . trans('global.downloadFile') . '</a>';
                 }
 
                 return implode(', ', $links);
@@ -72,7 +77,12 @@ class BackgroundProcessesController extends Controller
                 }
                 $links = [];
                 foreach ($row->images as $media) {
-                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+					
+					$mediaId = $media->id;
+					
+					$url = route('files.show', ['mediaId' => $mediaId]);
+					
+					$links[] = '<a href="' . $url . '" target="_blank"><img src="'.$url.'" width="50px" height="50px"></a>';
                 }
 
                 return implode(' ', $links);
@@ -86,17 +96,18 @@ class BackgroundProcessesController extends Controller
             $table->editColumn('descripcion_especial', function ($row) {
                 return $row->descripcion_especial ? $row->descripcion_especial : '';
             });
-            $table->editColumn('imagen_especial', function ($row) {
-                if ($photo = $row->imagen_especial) {
-                    return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
-                }
+			$table->editColumn('imagen_especial', function ($row) {
+				if (!$row->imagen_especial) {
+					return '';
+				}
 
-                return '';
-            });
+				$mediaId = $row->imagen_especial->id;
+
+				$url = route('files.show', ['mediaId' => $mediaId]);
+				
+				return '<a href="' . $url . '" target="_blank"><img src="'.$url.'" width="50px" height="50px"></a>';
+			});
+
             $table->editColumn('comments', function ($row) {
                 return $row->comments ? $row->comments : '';
             });

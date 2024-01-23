@@ -45,8 +45,8 @@
                         </th>
                         <td>
                             @foreach($backgroundProcess->file as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank">
-                                    {{ trans('global.view_file') }}
+                                <a href="{{ route('files.show', ['mediaId' => $media->id]) }}" target="_blank" style="display: inline-block">
+                                    Descargar Archivo 
                                 </a>
                             @endforeach
                         </td>
@@ -57,8 +57,8 @@
                         </th>
                         <td>
                             @foreach($backgroundProcess->images as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ route('files.show', ['mediaId' => $media->id]) }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ route('files.show', ['mediaId' => $media->id]) }}" width="50" height="50">
                                 </a>
                             @endforeach
                         </td>
@@ -93,9 +93,9 @@
                         </th>
                         <td>
                             @if($backgroundProcess->imagen_especial)
-                                <a href="{{ $backgroundProcess->imagen_especial->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $backgroundProcess->imagen_especial->getUrl('thumb') }}">
-                                </a>
+							<a href="{{route('files.show',['mediaId' => $backgroundProcess->imagen_especial->id])}}" target="_blank" style="display: inline-block">
+								<img src="{{route('files.show',['mediaId' => $backgroundProcess->imagen_especial->id])}}" width="50" height="50">
+							</a>
                             @endif
                         </td>
                     </tr>

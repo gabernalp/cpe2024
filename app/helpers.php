@@ -1,5 +1,11 @@
 <?php
 
+function getSftp(){
+
+	return env('FTP_HOST');
+	
+}
+
 //Validación para todos los objetos segun id enviado
 function checkVar($checkId,$checkObject){
     

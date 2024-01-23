@@ -58,8 +58,8 @@ class HomeController
         if (!array_key_exists('fields', $settings2)) {
             $settings2['fields'] = [];
         }
-        
-        if(session('mts') == auth()->id()){
+        //Modificar a if(session('mts') == auth()->id()) cuando mts esta encendido
+        if(auth()->id() == 1){
             return view('home', compact('chart1', 'settings2'));
         }
         else{

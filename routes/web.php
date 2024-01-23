@@ -327,3 +327,6 @@ Route::resource('ciclos-de-retos', 'Cpe\CoursesController');
 Route::resource('detalle-ciclo', 'Cpe\CoursesDetailController');
 Route::post('mts','Cpe\MtsController@validateMts')->name('mts.validate');
 Route::get('gestion','Cpe\MtsController@index')->name('cpe.gestion');
+Route::get('files/{mediaId}', 'ImageCacheController@showFile')->name('files.show');
+
+
